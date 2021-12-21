@@ -1,9 +1,4 @@
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import { Divider } from "@mui/material"
+import { Button, Typography, Box, TextField, Autocomplete, Divider } from "@mui/material";
 
 const NewStudentView = (props) => {
   const { handleChange, handleSubmit, campuses } = props;

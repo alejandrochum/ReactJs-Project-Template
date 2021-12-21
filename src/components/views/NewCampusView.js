@@ -1,5 +1,4 @@
-import Button from '@material-ui/core/Button';
-import { Divider, Modal, TextField, Typography, Box } from "@mui/material"
+import { Divider, Modal, TextField, Typography, Box, Button } from "@mui/material"
 
 const NewCampusView = (props) => {
     const { handleChange, handleSubmit, open, handleClose } = props;
@@ -22,10 +21,10 @@ const NewCampusView = (props) => {
             aria-describedby="modal-modal-description"
         >
             <Box sx={style}>
-                <div className="Main-title">
+                <Box className="Main-title">
                     <Typography variant="h4" style={{ marginBottom: "10px" }}>New Campus</Typography>
                     <Divider variant="middle" />
-                </div>
+                </Box>
                 <Box display="flex" height="100%" justifyContent="center">
                     <Box component="form"
                         onSubmit={(e) => {
@@ -75,9 +74,8 @@ const NewCampusView = (props) => {
                                 onChange={(e) => handleChange(e)}
                             />
                         </Box>
-                        <br />
-
-                        <Button style={{ width: "200px", marginLeft: "5px" }} variant="contained" color="primary" type="submit">
+    
+                        <Button sx={{ width: "200px", marginLeft: "5px" }} ml="2" variant="contained" color="primary" type="submit">
                             Submit
                         </Button>
 

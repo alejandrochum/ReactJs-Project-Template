@@ -7,67 +7,67 @@ import { addStudentThunk, fetchAllCampusesThunk } from '../../store/thunks';
 
 
 class NewStudentContainer extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-          firstname: "", 
-          lastname: "", 
-          campusId: null, 
-          redirect: false, 
-          redirectId: null
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstname: "",
+      lastname: "",
+      campusId: null,
+      redirect: false,
+      redirectId: null
+    };
+  }
 
-    componentDidMount() {
-      this.props.fetchAllCampuses();
-    }
+  componentDidMount() {
+    this.props.fetchAllCampuses();
+  }
 
-    handleChange = event => {
-      this.setState({
-        [event.target.name]: event.target.value
-      });
-    }
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
 
-    handleSubmit = async event => {
-        event.preventDefault();
-        event.target.reset()
-        let student = {
-            firstname: this.state.firstname,
-            lastname: this.state.lastname,
-            campusId: this.state.campusId,
-            gpa: this.state.gpa,
-            email: this.state.email
-        };
-       
-        let newStudent = await this.props.addStudent(student);
+  handleSubmit = async event => {
+    event.preventDefault();
+    event.target.reset()
+    let student = {
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      campusId: this.state.campusId,
+      gpa: this.state.gpa,
+      email: this.state.email
+    };
 
-        this.setState({
-          firstname: "", 
-          lastname: "", 
-          emai: "",
-          gpa: null,
-          campusId: null, 
-          redirect: true, 
-          redirectId: newStudent.id
-        });
-    }
+    let newStudent = await this.props.addStudent(student);
 
-    componentWillUnmount() {
-        this.setState({redirect: false, redirectId: null});
-    }
+    this.setState({
+      firstname: "",
+      lastname: "",
+      email: "",
+      gpa: null,
+      campusId: null,
+      redirect: true,
+      redirectId: newStudent.id
+    });
+  }
 
-    render() {
-        if(this.state.redirect) {
-          return (<Redirect to={`/student/${this.state.redirectId}`}/>)
-        }
-        return (
-          <NewStudentView 
-            handleChange = {this.handleChange} 
-            handleSubmit={this.handleSubmit}     
-            campuses={this.props.allCampuses} 
-          />
-        );
+  componentWillUnmount() {
+    this.setState({ redirect: false, redirectId: null });
+  }
+
+  render() {
+    if (this.state.redirect) {
+      return (<Redirect to={`/student/${this.state.redirectId}`} />)
     }
+    return (
+      <NewStudentView
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        campuses={this.props.allCampuses}
+      />
+    );
+  }
 }
 
 // Map state to props;
@@ -78,10 +78,10 @@ const mapState = (state) => {
 };
 
 const mapDispatch = (dispatch) => {
-    return({
-      fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()),
-        addStudent: (student) => dispatch(addStudentThunk(student))
-    })
+  return ({
+    fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()),
+    addStudent: (student) => dispatch(addStudentThunk(student))
+  })
 }
 
 // Type check props;

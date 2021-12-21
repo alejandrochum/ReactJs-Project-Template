@@ -91,7 +91,7 @@ const CampusView = (props) => {
           </IconButton>
         </Stack>
         <Divider variant="middle" />
-        <div style={{marginTop: "10px"}}>
+        <div style={{ marginTop: "10px" }}>
           <h4>{campus.address}</h4>
           <div>{campus.description}</div>
         </div>
@@ -102,10 +102,9 @@ const CampusView = (props) => {
         <div style={{ padding: "0px 20px 40px 20px" }}>
           <Box display="flex">
             <h3 style={{ flex: 1, marginBottom: "10px", fontSize: 18 }}>Students</h3>
-            <div onClick={handleOpen} className="link" style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-              <PersonAddIcon sx={{ mr: 1 }} />
-              <h3 style={{ fontSize: 18 }}>Add Student to Campus</h3>
-            </div>
+            <Button sx={{marginBottom: "10px"}} onClick={handleOpen} startIcon={<PersonAddIcon />}>
+              Add Student
+            </Button>
           </Box>
           <div style={{ height: "500px" }}>
             {checkStudents()}
@@ -123,7 +122,7 @@ const CampusView = (props) => {
             <div style={{ flex: 1, height: "100%", margin: "10px" }}>
               <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
                 <PersonAddIcon sx={{ mr: 1 }} />
-                <h3 style={{ fontSize: 18 }}>Add Student to Campus</h3>
+                <h3 style={{ fontSize: 18 }}>Add Student to {campus.name}</h3>
               </div>
               <div style={{}}>
                 <Box component="form"

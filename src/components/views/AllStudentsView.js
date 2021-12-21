@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
 import { DataGrid } from '@mui/x-data-grid';
-import { Divider, Button } from "@mui/material"
+import { Divider, IconButton, Button } from "@mui/material"
 
-import InfoIcon from '@mui/icons-material/Info';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
 
 const AllStudentsView = (props) => {
   const { students, deleteStudent } = props;
@@ -17,9 +17,10 @@ const AllStudentsView = (props) => {
           <Divider variant="middle" />
         </div>
         <p>There are no students.</p>
-        <Link className="link" to={`newstudent`}>
-          <Button variant="contained" color="primary">Add New Student</Button>
-        </Link>
+        <Button href={`/newstudent`} variant="outlined" startIcon={<PersonAddIcon />}>
+          Add a new student
+        </Button>
+
       </div>
     );
   }
@@ -34,13 +35,12 @@ const AllStudentsView = (props) => {
     {
       field: 'col0', headerName: 'Info', width: 65, align: "center", renderCell: (cellValues) => {
         return (
-          <Link style={{ display: 'flex', alignItems: 'center' }} to={`/student/${cellValues.row.id}`}>
-            <InfoIcon
-              variant="contained"
-              color="primary"
-            >
-            </InfoIcon>
-          </Link>
+          <IconButton href={`/student/${cellValues.row.id}`}>
+              <InfoOutlinedIcon
+                color="primary"
+              >
+              </InfoOutlinedIcon>
+          </IconButton>
         )
       }
     },
@@ -48,16 +48,26 @@ const AllStudentsView = (props) => {
     { field: 'col2', headerName: 'Last Name', width: 250 },
     { field: 'col3', headerName: 'Campus', width: 250 },
     {
-      field: 'col4', headerName: 'Delete', flex: 1, headerAlign: "center", align: 'center', renderCell: (cellValues) => {
+      field: 'col4', headerName: 'Edit', flex: 1, headerAlign: "center", align: 'center', renderCell: (cellValues) => {
         return (
-          <DeleteForeverIcon sx={{ cursor: "pointer" }}
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              deleteStudent(cellValues.row.id);
-            }}
-          >
-          </DeleteForeverIcon>
+          <IconButton href={`/editstudent/${cellValues.row.id}`}>
+            <EditIcon>
+            </EditIcon>
+          </IconButton>
+        )
+      }
+    },
+    {
+      field: 'col5', headerName: 'Delete', flex: 1, headerAlign: "center", align: 'center', renderCell: (cellValues) => {
+        return (
+          <IconButton color="error">
+            <DeleteForeverIcon
+              onClick={() => {
+                deleteStudent(cellValues.row.id);
+              }}
+            >
+            </DeleteForeverIcon>
+          </IconButton>
         )
       }
     }
@@ -72,9 +82,9 @@ const AllStudentsView = (props) => {
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
         <div style={{ flexGrow: 0.8, height: "100%" }}>
           <div>
-            <Link className="link" style={{ display: 'flex', alignItems: "center", marginBottom: "10px" }} to={`/newstudent`}>
-              <PersonAddIcon sx={{ fontSize: 40, mr: 2, ml: 1 }} />
-            </Link>
+            <IconButton href={'/newstudent'} sx={{ marginBottom: "10px" }} >
+              <PersonAddIcon />
+            </IconButton>
           </div>
           <div style={{ height: "80%" }}>
             <DataGrid rows={rows} columns={columns} />

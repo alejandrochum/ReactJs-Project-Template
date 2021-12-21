@@ -1,67 +1,59 @@
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import { Box, Typography, Button, Card, CardContent, CardActions } from '@mui/material';
 
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  title: {
-    flexGrow: 1,
-    textAlign: 'left',
-    fontType: 'bold',
-    fontFamily: 'Courier, sans-serif', 
-    fontSize: '35px', 
-    color: '#CDDC39'
-  },
-  appBar:{
-    backgroundColor: '#11153e',
-    shadows: ['none'],
-  },
-  greeting:{
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    width: "50%",
-    margin: "auto",
-  },
-  links:{
-    textDecoration: 'none',
-  }
-
-}));
-
-const HomePageView = () => {
-  const classes = useStyles();
+const HomePageView = (props) => {
+  const { campuses, students } = props;
   return (
-    <div className={classes.root}>
-      <AppBar position="static" elevation={0} className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" className={classes.title} color="inherit" >
-            CRUD App
-          </Typography>
 
-          <Link className={classes.links} to={'/campuses'} >
-            <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
-              All Campuses
-            </Button>
-          </Link>
+    <Box display="flex" alignItems="center" sx={{ p: "80px", flexDirection: "column" }}>
+      <Typography variant="h3" sx={{ mb: 1 }}>Student-Campus Manager</Typography>
+      <Typography variant="h4" sx={{ mx: "auto", mb: 5 }}>Welcome</Typography>
+      <Box >
+        <Card sx={{ minWidth: 275, maxWidth: 500, mb: 3 }}>
+          <CardContent>
+            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+              Campuses
+            </Typography>
+            <Typography variant="h5" component="div">
+              {campuses.length}
+            </Typography>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              Campuses on Database
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Link className='link' style={{ color: "#1e88e5" }} to={'/campuses'}>
+              <Button size="small">
+                Go to Campuses
+              </Button>
+            </Link>
+          </CardActions>
+        </Card>
 
-          <Link className={classes.links} to={'/students'} >
-            <Button variant="contained" color="primary">
-              All Students
-            </Button>
-          </Link>
-        </Toolbar>
-      </AppBar>
-      
-      <div className={classes.greeting}><h1>Home Page</h1></div>
-    </div>
-  );    
+        <Card sx={{ minWidth: 275, maxWidth: 500 }}>
+          <CardContent>
+            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+              Students
+            </Typography>
+            <Typography variant="h5" component="div">
+              {students.length}
+            </Typography>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              Students Registered
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Link className='link' style={{ color: "#1e88e5" }} to={'/students'}>
+              <Button size="small">Go to Students</Button>
+            </Link>
+          </CardActions>
+        </Card>
+      </Box>
+
+    </Box>
+
+  );
 }
 
 

@@ -13,7 +13,7 @@ const EditCampusView = (props) => {
     return (
         <Box>
             <div className="Main-title">
-                <Typography variant="h4" style={{ marginBottom: "10px" }}>Edit Campus: Campus Name</Typography>
+                <Typography variant="h4" style={{ marginBottom: "10px" }}>Edit Campus: {campus.name}</Typography>
                 <Divider variant="middle" />
             </div>
             <Box sx={style}>

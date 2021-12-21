@@ -1,11 +1,3 @@
-// const AllStudentsContainer = () => {
-//   return (
-//     <h1>All Students View</h1>
-//   );
-// };
-
-// export default AllStudentsContainer;
-
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";

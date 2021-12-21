@@ -1,3 +1,3 @@
-# projectFrontEnd
+# ProjectFrontEnd
 
 Xavier A Chum
